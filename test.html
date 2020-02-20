@@ -1,0 +1,126 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="no-js lt-ie10" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>Gestión Documental :: Inicio de Sesión</title>
+
+        <meta name="description" content="Gestión Documental :: Inicio de Sesión">
+        <meta name="author" content="pixelcave">
+        <meta name="robots" content="noindex, nofollow">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <!-- Icons -->
+        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+        <link rel="shortcut icon" href="http://localhost:8080/gestion-documental/assets/img/favicon.png">
+        <link rel="apple-touch-icon" href="http://localhost:8080/gestion-documental/assets/img/icon57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="http://localhost:8080/gestion-documental/assets/img/icon72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="http://localhost:8080/gestion-documental/assets/img/icon76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="http://localhost:8080/gestion-documental/assets/img/icon114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="http://localhost:8080/gestion-documental/assets/img/icon120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="http://localhost:8080/gestion-documental/assets/img/icon144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="http://localhost:8080/gestion-documental/assets/img/icon152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="http://localhost:8080/gestion-documental/assets/img/icon180.png" sizes="180x180">
+        <!-- END Icons -->
+
+        <!-- Stylesheets -->
+        <!-- Bootstrap is included in its original form, unaltered -->
+        <link rel="stylesheet" href="http://localhost:8080/gestion-documental/assets/css/bootstrap.min.css">
+
+        <!-- Related styles of various icon packs and plugins -->
+        <link rel="stylesheet" href="http://localhost:8080/gestion-documental/assets/css/plugins.css">
+
+        <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+        <link rel="stylesheet" href="http://localhost:8080/gestion-documental/assets/css/main.css">
+
+        <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
+
+        <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+        <link rel="stylesheet" href="http://localhost:8080/gestion-documental/assets/css/themes.css">
+        <!-- END Stylesheets -->
+
+        <!-- Modernizr (browser feature detection library) -->
+        <script src="http://localhost:8080/gestion-documental/assets/js/vendor/modernizr-3.3.1.min.js"></script>
+    </head>
+    <body>
+      <img src="http://localhost:8080/gestion-documental/assets/img/placeholders/layout/login2_full_bg.jpg" alt="Full Background" class="full-bg animation-pulseSlow">
+        <!-- Login Container -->
+        <div id="login-container">
+          
+            <!-- Login Header -->
+            <h1 class="h2 text-light text-center push-top-bottom animation-slideDown">
+                <i class="fa fa-cube"></i> <strong>Bienvenido a ZELLDOC</strong>
+            </h1>
+            <!-- END Login Header -->
+
+            <!-- Login Block -->
+            <div class="block animation-fadeInQuickInv">
+                <!-- Login Title -->
+                <div class="block-title">
+                    <div class="block-options pull-right">
+                        <a href="http://localhost:8080/gestion-documental/recuperar-contrasena" class="btn btn-effect-ripple btn-primary" data-toggle="tooltip" data-placement="left" title="Olvidó su clave?"><i class="fa fa-exclamation-circle"></i></a>
+                    </div>
+                    <h2>Por favor Iniciar Sesión</h2>
+                </div>
+                <!-- END Login Title -->
+
+                <!-- Login Form -->
+                <form id="form-login" action="http://localhost:8080/gestion-documental/signin" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="email" id="user_email" name="user_email" value="" class="form-control" placeholder="Tu email..">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="password" id="user_pass" name="user_pass" class="form-control" placeholder="Tu clave..">
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-8">
+                            <label class="csscheckbox csscheckbox-primary">
+                                <input type="checkbox" id="login-remember-me" name="login-remember-me" >
+                                <span></span>
+                            </label>
+                            Recuérdame?
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <button type="submit" class="btn btn-effect-ripple btn-sm btn-primary"><i class="fa fa-check"></i> Iniciar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Login Form -->
+            </div>
+            <!-- END Login Block -->
+
+            <!-- Footer -->
+            <footer class="text-muted text-center animation-pullUp">
+                <small><span id="year-copy"></span> </small>
+            </footer>
+            <!-- END Footer -->
+        </div>
+        <!-- END Login Container -->
+
+        <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
+        <script src="http://localhost:8080/gestion-documental/assets/js/vendor/jquery-2.2.4.min.js"></script>
+        <script src="http://localhost:8080/gestion-documental/assets/js/vendor/bootstrap.min.js"></script>
+        <script src="http://localhost:8080/gestion-documental/assets/js/plugins.js"></script>
+        <script src="http://localhost:8080/gestion-documental/assets/js/app.js"></script>
+
+        <!-- Load and execute javascript code used only in this page -->
+        <script src="http://localhost:8080/gestion-documental/assets/js/pages/readyLogin.js"></script>
+        <script>$(function(){ ReadyLogin.init(); });</script>
+    </body>
+</html>
