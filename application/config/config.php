@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8080/gameon/';
+$config['base_url'] = 'http://localhost:8080/GameOn-Web/';
 //$config['base_url'] = 'http://siscpn.com/11101/36/';
 //$config['base_url'] = 'http://siscpn.com/05212/01/';
 /*

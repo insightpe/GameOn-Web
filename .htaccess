@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
 
 RewriteEngine On
-RewriteBase /gameon/
+RewriteBase /GameOn-Web/
 #RewriteBase /11101/36/
 
 #Removes access to the system folder by users.
