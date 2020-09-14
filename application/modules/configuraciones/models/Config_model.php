@@ -45,7 +45,7 @@ class Config_model extends CI_Model {
         return $this->db->affected_rows();
     }
 
-    public function custom_is_unique($table, $field, $field_id, $where, $id, $field_value){
+    public function custom_is_unique($table, $field, $field_id, $where, $id, $field_value, $arr_where){
         $this->db->select('count(*) AS count');
       $this->db->from($table);
       $this->db->where($field_id . " !=", $id);
@@ -54,6 +54,10 @@ class Config_model extends CI_Model {
         $this->db->where($where); 
       }
       
+      if($arr_where != null){
+        $this->db->where($arr_where); 
+      }
+
       $this->db->where($field, $field_value); 
       $query = $this->db->get();
       $result = $query->row();

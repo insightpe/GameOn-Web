@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                    <h4 class="card-title"><?php echo $header_title; ?></h4>
+                    <h4 class="card-title"><?php echo $header_description; ?></h4>
             </div>
             <div class="card-body">
         <!-- general form elements -->
@@ -19,8 +19,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <form role="form" id="frmUser" action="<?php echo base_url('agregar-usuario'); ?>" method="POST">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="user_name"><?php echo $this->lang->line('users_forms_full_name'); ?></label>
-                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="<?php echo $this->lang->line('users_forms_full_name'); ?>">
+                            <label for="user_name">Nombres</label>
+                            <input type="text" class="form-control" name="user_name" id="user_name" placeholder="Nombres">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_lastname">Apellidos</label>
+                            <input type="text" class="form-control" name="user_lastname" id="user_lastname" placeholder="Apellidos">
                         </div>
                         <div class="form-group">
                             <label for="user_email"><?php echo $this->lang->line('users_forms_email'); ?></label>
@@ -44,11 +48,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 ?>
                             </select>
                         </div>
+                        <div class="form-group" id="secCampoAsignado" style="display:none">
+                            <label for="user_role">Centro Deportivo Asignado</label>
+                            <select class="form-control" name="campo_id" id="campo_id">
+                                <option value="">Seleccione uno...</option>
+                                <?php
+                                foreach ($campos as $campo) {
+                                    echo '<option value="' . $campo->campo_id . '">' . $campo->nombre . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="user_status"><?php echo $this->lang->line('users_forms_user_status'); ?></label>
                             <select class="form-control" name="user_status" id="user_status">
                                 <option value="1"><?php echo $this->lang->line('status_active'); ?></option>
                                 <option value="2"><?php echo $this->lang->line('status_unactive'); ?></option>
+                                <option value="4"><?php echo $this->lang->line('status_unactive'); ?></option>
                             </select>
                         </div>                    
                     </div><!-- /.box-body -->

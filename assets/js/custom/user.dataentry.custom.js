@@ -10,6 +10,15 @@ var UiUserDataEntry = function() {
             $("#change_pass").click(UiUserDataEntry.changePass);
             $("#btnUpdateProfile").click(UiUserDataEntry.updateProfile);
             $("#btnUpdateSecurity").click(UiUserDataEntry.updateSecurity);
+            $("#user_role").change(UiUserDataEntry.changeRole);
+        },
+        changeRole: function(){
+          debugger;
+          if($(this).val()==App.role_campo_id){
+            $("#secCampoAsignado").css("display", "");
+          }else{
+            $("#secCampoAsignado").css("display", "none");
+          }
         },
         add: function() {
             /*var data = {

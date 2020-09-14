@@ -38,15 +38,50 @@ class Users_model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    public function getUserByEmailF($email) {
+      $this->db->select('u.*, ui.nombre, ui.apellido, ui.user_img_profile,r.role, e.Nombre AS estado_nombre');
+      $this->db->from('users u, user_info ui, roles r, estado e');
+      $this->db->where('u.id = ui.id_user AND u.user_role_id = r.role_id AND e.EstadoID = u.user_status_id');
+      $this->db->where('user_email', $email);
+      $this->db->where('es_facebook_login', 1);
+
+      $query = $this->db->get();
+    //$query = $this->db->get_where($this->table, ['user_email' => $email]);
+    return $query->row();
+  }
+
+    public function getUserByEmailG($email) {
+      $this->db->select('u.*, ui.nombre, ui.apellido, ui.user_img_profile,r.role, e.Nombre AS estado_nombre');
+      $this->db->from('users u, user_info ui, roles r, estado e');
+      $this->db->where('u.id = ui.id_user AND u.user_role_id = r.role_id AND e.EstadoID = u.user_status_id');
+      $this->db->where('user_email', $email);
+      $this->db->where('es_google_login', 1);
+
+      $query = $this->db->get();
+    //$query = $this->db->get_where($this->table, ['user_email' => $email]);
+    return $query->row();
+  }
+
     public function getUserByEmail($email) {
-        $this->db->select('u.*, ui.nombre, ui.user_img_profile,r.role, e.Nombre AS estado_nombre');
+        $this->db->select('u.*, ui.nombre, ui.apellido, ui.user_img_profile,r.role, e.Nombre AS estado_nombre, es_google_login, es_facebook_login');
         $this->db->from('users u, user_info ui, roles r, estado e');
-        $this->db->where('u.user_role_id = r.role_id AND e.EstadoID = u.user_status_id');
+        $this->db->where('u.id = ui.id_user AND u.user_role_id = r.role_id AND e.EstadoID = u.user_status_id');
         $this->db->where('user_email', $email);
   
         $query = $this->db->get();
       //$query = $this->db->get_where($this->table, ['user_email' => $email]);
       return $query->row();
+    }
+
+    public function getUserByCode($code) {
+      $this->db->select('u.*, ui.nombre, ui.apellido, ui.user_img_profile,r.role, e.Nombre AS estado_nombre');
+      $this->db->from('users u, user_info ui, roles r, estado e');
+      $this->db->where('u.id = ui.id_user AND u.user_role_id = r.role_id AND e.EstadoID = u.user_status_id');
+      $this->db->where('user_activation_code', $code);
+
+      $query = $this->db->get();
+    //$query = $this->db->get_where($this->table, ['user_email' => $email]);
+    return $query->row();
     }
 
     public function get($id = FALSE) {
@@ -71,6 +106,15 @@ class Users_model extends CI_Model {
         $this->db->where($this->id, $id);
         $this->db->update($this->table, $data);
         return $this->db->affected_rows();
+    }
+    
+    public function getDeportes($user_id) {
+      $this->db->select('d.deporte_id, d.nombre');
+      $this->db->from('user_deportes ud');
+      $this->db->join('deporte d', 'd.deporte_id = ud.deporte_id');
+      $this->db->where('ud.user_id', $user_id);
+      $query = $this->db->get();
+      return $query->result();
     }
 
     public function getUsers() {
@@ -116,11 +160,6 @@ class Users_model extends CI_Model {
     public function getActivesByRole($role_id) {
       $query = $this->db->get_where($this->table, ['user_role_id' => $role_id]);
       return $query->result();
-    }
-    
-    public function getUserByCode($code) {
-        $query = $this->db->get_where($this->table, ['user_activation_code' => $code]);
-        return $query->row();
     }
 
     public function list() {

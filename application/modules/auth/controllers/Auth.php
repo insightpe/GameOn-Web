@@ -70,6 +70,7 @@ class Auth extends MY_Controller {
         $_SESSION['user_email'] = $user->user_email;
         $_SESSION['is_logged_in'] = TRUE;
         $_SESSION['user_role'] = $user->user_role_id;
+        $_SESSION['campo_id'] = $user->campo_id;
         $_SESSION['user_role_name'] = $role->role;
         $_SESSION['user_last_login'] = $user->user_date_lastlogin;
         $_SESSION['is_super_admin'] = $user->is_super_admin;

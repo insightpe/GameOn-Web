@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><?php echo $header_title; ?></h4>
+                <h4 class="card-title"><?php echo $header_description; ?></h4>
             </div>
             <div class="card-body">
                 <div class="toolbar">

@@ -91,7 +91,14 @@ define("APP_NAME_ABBREV", "GO");
 define("LAYOUT_TYPE_GENERAL", 1);
 define("LAYOUT_TYPE_DASHBOARD", 2);
 
-define("HOST_SMTP_EMAIL_CONTACT", "");
-define("PORT_SMPT_EMAIL_CONTACT", "");
-define("EMAIL_CONTACT", "");
-define("PASS_EMAIL_CONTACT", "");
+define("USER_ROLE", 8);
+define("USER_STATUS_ACTIVE", 1);
+define("CAMPO_ROLE_ID", 9);
+define("CAMPO_ESTADO_ACTIVO", 1);
+define("CAMPO_ESTADO_INACTIVO", 2);
+define("DEPORTE_ID_DEFAULT", 1);
+
+define("HOST_SMTP_EMAIL_CONTACT", "ssl://smtp.googlemail.com");
+define("PORT_SMPT_EMAIL_CONTACT", "465");
+define("EMAIL_CONTACT", "sportmanagementperu@gmail.com");
+define("PASS_EMAIL_CONTACT", "SportManagement2019");

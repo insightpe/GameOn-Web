@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                    <h4 class="card-title"><?php echo $header_title; ?></h4>
+                    <h4 class="card-title"><?php echo $header_description; ?></h4>
             </div>
             <div class="card-body">
         <!-- general form elements -->
@@ -43,6 +43,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 ?>
                             </select>
                         </div>
+                        <div class="form-group" id="secCampoAsignado" style="<?php echo $user->user_role_id == CAMPO_ROLE_ID ? "" : "display:none" ?>">
+                            <label for="user_role">Centro Deportivo Asignado</label>
+                            <select class="form-control" name="campo_id" id="campo_id">
+                                <option value="">Seleccione uno...</option>
+                                <?php
+                                foreach ($campos as $campo) {
+                                    echo '<option ' . ($user->campo_id == $campo->campo_id  ? "selected" : "") . ' value="' . $campo->campo_id . '">' . $campo->nombre . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="user_status"><?php echo $this->lang->line('users_forms_user_status'); ?></label>
                             <select class="form-control" id="user_status" name="user_status">
@@ -57,6 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 ?>
                                 <option value="1" <?php echo $activo; ?>><?php echo $this->lang->line('status_active'); ?></option>
                                 <option value="2" <?php echo $inactivo; ?>><?php echo $this->lang->line('status_unactive'); ?></option>
+                                <option value="4" <?php echo $inactivo; ?>><?php echo $this->lang->line('status_unactive'); ?></option>
                             </select>
                         </div>                    
                     </div><!-- /.box-body -->

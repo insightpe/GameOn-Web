@@ -65,3 +65,57 @@ $route['agregar-usuario'] = "users/add_user";
 //dash users permissions
 $route['permisos-usuario/(:num)'] = "userpermissions/user_permissions/$1";
 $route['actualizar-permisos-usuario/(:num)'] = "userpermissions/update_user_permissions/$1";
+
+
+//dash deportes
+$route['listar-deportes'] = "deportes/list_deportes";
+$route['get-list-deportes'] = "deportes/get_list_deportes";
+$route['nuevo-deporte'] = "deportes/form_new_deporte";
+$route['agregar-deporte'] = "deportes/add_deporte";
+$route['editar-deporte/(:num)'] = "deportes/form_edit_deporte/$1";
+$route['actualizar-deporte'] = "deportes/update_deporte";
+$route['eliminar-deporte/(:num)'] = "deportes/delete_deporte";
+$route['obtener-deporte'] = "deportes/get_deporte";
+
+//dash promociones
+$route['listar-promociones'] = "promociones/list_promociones";
+$route['get-list-promociones'] = "promociones/get_list_promociones";
+$route['nuevo-promocion'] = "promociones/form_new_promocion";
+$route['agregar-promocion'] = "promociones/add_promocion";
+$route['editar-promocion/(:num)'] = "promociones/form_edit_promocion/$1";
+$route['actualizar-promocion'] = "promociones/update_promocion";
+$route['eliminar-promocion/(:num)'] = "promociones/delete_promocion";
+$route['obtener-promocion'] = "promociones/get_promocion";
+
+//dash campos
+$route['listar-campos'] = "campos/list_campos";
+$route['get-list-campos'] = "campos/get_list_campos";
+$route['nuevo-campo'] = "campos/form_new_campo";
+$route['agregar-campo'] = "campos/add_campo";
+$route['editar-campo/(:num)'] = "campos/form_edit_campo/$1";
+$route['actualizar-campo'] = "campos/update_campo";
+$route['eliminar-campo/(:num)'] = "campos/delete_campo";
+$route['obtener-campo'] = "campos/get_campo";
+$route['get-list-detallefotos'] = "campos/get_list_detallefotos";
+$route['agregar-campoimagen'] = "campos/add_campo_imagen";
+$route['actualizar-campoimagen'] = "campos/update_campo_imagen";
+$route['editar-campoimagen/(:num)'] = "campos/edit_campo_imagen/$1";
+$route['eliminar-campoimagen/(:num)'] = "campos/delete_campo_imagen/$1";
+$route['get-by-pronvincias'] = "campos/get_by_provincias";
+$route['get-by-distritos'] = "campos/get_by_distritos";
+
+//dash camposcanchas
+$route['listar-campocanchas'] = "campocanchas/list_campocanchas";
+$route['get-list-campocanchas'] = "campocanchas/get_list_campocanchas";
+$route['nuevo-campocancha'] = "campocanchas/form_new_campocancha";
+$route['agregar-campocancha'] = "campocanchas/add_campocancha";
+$route['editar-campocancha/(:num)'] = "campocanchas/form_edit_campocancha/$1";
+$route['actualizar-campocancha'] = "campocanchas/update_campocancha";
+$route['eliminar-campocancha/(:num)'] = "campocanchas/delete_campocancha";
+$route['obtener-campocancha'] = "campocanchas/get_campocancha";
+
+//dash canchas reservadas
+$route['get-list-canchas'] = "canchareservada/get_list_campo_canchas";
+$route['canchareservada-get-list-deportes'] = "canchareservada/get_list_deportes";
+$route['listar-canchareservada'] = "canchareservada/list_canchareservada";
+$route['get-list-canchareservada'] = "canchareservada/get_list_canchareservada";

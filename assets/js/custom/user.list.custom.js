@@ -63,28 +63,28 @@ var UiUserList = function() {
                   {"data": "user_email", width:"30%"},
                   {"data": "role", width:"20%"},
                   {"data": "estado", width:"10%",
-                  "render": function (data, type, full, meta) {
-                      if(type === 'display'){
-                        var badget = "";
-                        switch(full.user_status_id){
-                            case "1":
-                                badget = "badge badge-success";
-                                break;
-                            case "2":
-                                badget = "badge badge-warning";
-                                break;
-                            case "3":
-                                badget = "badge badge-danger";
-                                break;
-                        }
+                    "render": function (data, type, full, meta) {
+                        if(type === 'display'){
+                          var badget = "";
+                          switch(full.user_status_id){
+                              case "1":
+                                  badget = "badge badge-success";
+                                  break;
+                              case "2":
+                                  badget = "badge badge-warning";
+                                  break;
+                              case "3":
+                                  badget = "badge badge-danger";
+                                  break;
+                          }
 
-                        var r = "<span class='" + badget + "'>" + data + "</span>";
-                        return r;
-                      }else{
-                          return data;
-                      }
-                  }
-                    },
+                          var r = "<span class='" + badget + "'>" + data + "</span>";
+                          return r;
+                        }else{
+                            return data;
+                        }
+                    }
+                  },
                 
                   {"data": "id", "searchable": false, width:"70",  className : "text-center",
                     "render": function (data, type, full, meta) {

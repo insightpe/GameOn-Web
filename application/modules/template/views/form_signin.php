@@ -128,7 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <div class="card-header ">
     <div class="logo-container">
-                            <img src="<?php echo base_url('assets'); ?>/img/gameon-logo.png" alt="">
+                            <img src="<?php echo base_url('assets'); ?>/img/logo-gameon.png" alt="">
                         </div>
     </div>
     
@@ -287,7 +287,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!--  Notifications Plugin    -->
 <script src="<?php echo base_url('assets'); ?>/js/plugins/bootstrap-notify.js"></script>
-
+<script src="<?php echo base_url('assets'); ?>/js/plugins/jquery.blockUI.js"></script>
 
 
 

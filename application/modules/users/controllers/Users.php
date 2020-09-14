@@ -20,6 +20,7 @@ class Users extends MY_Controller {
         $this->load->model([
             'Users_model',
             'Userinfo_model',
+            'Campos/Campos_model',
             'Roles/Roles_model'
         ]);
         $this->load->library('Utilities');
@@ -110,6 +111,7 @@ class Users extends MY_Controller {
         $data->active = "users";
         $data->footer_scripts = $this->footer_scripts("update");
         $data->roles = $this->Roles_model->get();
+        $data->campos = $this->Campos_model->get();
         $data->user = $user;
         $this->template->call_admin_template($data);
     }
@@ -128,6 +130,7 @@ class Users extends MY_Controller {
         $data->header_title = "Módulo de Usuarios";
         $data->header_description = "Agregar Usuario";
         $data->dash_container = "users/form_new_user";
+        $data->campos = $this->Campos_model->get();
         $data->footer_scripts = $this->footer_scripts("add");
         $data->active = "users";
 
@@ -135,6 +138,67 @@ class Users extends MY_Controller {
 
         $this->template->call_admin_template($data);
     }
+
+//registro de usuarios
+public function add_user() {
+    $this->load->library('form_validation');
+
+    $date = date('Y-m-d H:i:s');
+    $activation_code = sha1($date);
+
+    $rol = $this->input->post('user_role');
+
+    if ($this->form_validation->run("new_user") == FALSE) {
+        $errors = validation_errors();
+        echo json_encode(['error'=>$errors]);
+    } else {
+        $user_email = $this->security->xss_clean($this->input->post('user_email', TRUE));
+        $user_pass = $this->security->xss_clean($this->input->post('user_pass', TRUE));
+        $user_name = $this->security->xss_clean($this->input->post('user_name', TRUE));
+        $user_lastname = $this->security->xss_clean($this->input->post('user_lastname', TRUE));
+        $user_email_share = $this->security->xss_clean($this->input->post('user_email_share', TRUE));
+        $campo_id = $this->input->post('campo_id');
+
+        $user_salt = $this->utilities->random_salt();
+        $user_date = $date;
+        $user_modified = $date;
+        $user_activation_code = $activation_code;
+        $user_pass_hash = $this->utilities->hash_passwd($user_pass, $user_salt);
+
+        $status = $this->input->post('user_status');
+        $rol = $this->input->post('user_role');
+
+        //json_encode lo convierte en formato json
+        $user_db = [
+            'user_email' => $user_email,
+            'user_pass' => $user_pass_hash,
+            'user_salt' => $user_salt,
+            'user_role_id' => $rol,
+            'user_date_created' => $user_date,
+            'user_modified' => $user_modified,
+            'user_activation_code' => $user_activation_code,
+            'user_status_id' => $status,
+            'campo_id' => $campo_id == "" ? null : $campo_id
+        ];
+
+        $id = $this->Users_model->insert($user_db);
+        
+        $user_info_db = [
+            'id_user' => $id,
+            'nombre' => $user_name ,
+            'apellido' => $user_lastname ,
+            'user_img_profile' => "" ,
+        ];
+
+        $id = $this->Userinfo_model->insert($user_info_db);
+
+        if (count($id) > 0) {
+            echo json_encode(['redirect'=>base_url("listar-usuarios")]);
+        } else {
+            echo json_encode(['error'=>$this->lang->line('users_error_add')]);
+        }
+    }
+}
 
     public function update_user() {
         $this->load->library('form_validation');
@@ -146,18 +210,28 @@ class Users extends MY_Controller {
             echo json_encode(['error'=>$errors]);
         } else {
             $user_name = $this->security->xss_clean($this->input->post('user_name', TRUE));
+            $user_lastname = $this->security->xss_clean($this->input->post('user_lastname', TRUE));
             $user_modified = $date;
 
             $status = $this->input->post('user_status');
             $rol = $this->input->post('user_role');
+            $campo_id = $this->input->post('campo_id');
 
             $user_db = [
                 'user_role_id' => $rol,
                 'user_modified' => $user_modified,
                 'user_status_id' => $status,
+                'campo_id' => $campo_id == "" ? null : $campo_id
             ];
 
             $id = $this->Users_model->update($id_user, $user_db);
+
+            $user_info_db = [
+                'nombre' => $user_name ,
+                'apellido' => $user_lastname ,
+            ];
+    
+            $id = $this->Userinfo_model->update($id_user, $user_info_db);
            
             if (count($id) > 0) {
                 echo json_encode(['redirect'=>base_url("listar-usuarios")]);
@@ -277,7 +351,7 @@ class Users extends MY_Controller {
     public function form_user_profile() {
         $this->utilities->is_session_start();
         $this->acl->acceso('mudule_access_users');
-        $this->acl->acceso('list_users');
+        $this->acl->acceso('proflie_user');
 
         $data = new stdClass();
         $data->title = APP_NAME . " :: Dashboard :: " . $this->lang->line('users_perfil');
@@ -388,61 +462,6 @@ class Users extends MY_Controller {
         }
     }
 
-    //registro de usuarios
-    public function add_user() {
-        $this->load->library('form_validation');
-
-        $date = date('Y-m-d H:i:s');
-        $activation_code = sha1($date);
-
-        $rol = $this->input->post('user_role');
-
-        if ($this->form_validation->run("new_user") == FALSE) {
-            $errors = validation_errors();
-            echo json_encode(['error'=>$errors]);
-        } else {
-            $user_email = $this->security->xss_clean($this->input->post('user_email', TRUE));
-            $user_pass = $this->security->xss_clean($this->input->post('user_pass', TRUE));
-            $user_name = $this->security->xss_clean($this->input->post('user_name', TRUE));
-            $user_email_share = $this->security->xss_clean($this->input->post('user_email_share', TRUE));
-
-            $user_salt = $this->utilities->random_salt();
-            $user_date = $date;
-            $user_modified = $date;
-            $user_activation_code = $activation_code;
-            $user_pass_hash = $this->utilities->hash_passwd($user_pass, $user_salt);
-
-            $status = $this->input->post('user_status');
-            $rol = $this->input->post('user_role');
-
-            //json_encode lo convierte en formato json
-            $user_db = [
-                'user_email' => $user_email,
-                'user_pass' => $user_pass_hash,
-                'user_salt' => $user_salt,
-                'user_role_id' => $rol,
-                'user_date_created' => $user_date,
-                'user_modified' => $user_modified,
-                'user_activation_code' => $user_activation_code,
-                'user_status_id' => $status,
-            ];
-
-            $id = $this->Users_model->insert($user_db);
-            
-            $user_info_db = [
-                'id_user' => $id,
-                'nombre' => $user_name ,
-                'user_img_profile' => "" ,
-            ];
-
-            $id = $this->Userinfo_model->insert($user_info_db);
-
-            if (count($id) > 0) {
-                echo json_encode(['redirect'=>base_url("listar-usuarios")]);
-            } else {
-                echo json_encode(['error'=>$this->lang->line('users_error_add')]);
-            }
-        }
-    }
+    
 
 }
